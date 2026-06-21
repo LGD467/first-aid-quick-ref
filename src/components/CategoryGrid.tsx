@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
-import type { InjuryData } from "@/data/injuries.json";
+import type { InjuryData } from "@/types/injury";
 
 interface CategoryGridProps {
   injuries: InjuryData[];

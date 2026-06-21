@@ -1,18 +1,18 @@
 import { useMemo } from "react";
 import Fuse from "fuse.js";
-import type { InjuryData } from "@/data/injuries.json";
+import type { InjuryData } from "@/types/injury";
 import injuries from "@/data/injuries.json";
 
 interface SearchResult {
   item: InjuryData;
-  matches?: readonly Fuse.FuseResultMatch[];
+  matches?: Array<{ key: string; value: string }>;
 }
 
 export function useSearch(query: string): SearchResult[] {
   return useMemo(() => {
     if (!query || query.trim().length < 2) return [];
 
-    const fuse = new Fuse(injuries, {
+    const fuse = new Fuse<InjuryData>(injuries, {
       keys: [
         { name: "title", weight: 0.4 },
         { name: "keywords", weight: 0.3 },
@@ -25,6 +25,6 @@ export function useSearch(query: string): SearchResult[] {
       minMatchCharLength: 2,
     });
 
-    return fuse.search(query.trim());
+    return fuse.search(query.trim()) as unknown as SearchResult[];
   }, [query]);
 }

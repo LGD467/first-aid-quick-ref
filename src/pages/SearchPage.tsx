@@ -76,7 +76,7 @@ export default function SearchPage() {
                         {/* 匹配关键词高亮提示 */}
                         {result.matches && (
                           <div className="flex flex-wrap gap-1.5 mt-2.5">
-                            {result.matches.slice(0, 3).map((match, idx) => (
+                            {(result.matches as Array<{ key: string }>).slice(0, 3).map((match, idx) => (
                               <span
                                 key={idx}
                                 className="px-2 py-0.5 bg-yellow-100 text-yellow-800 rounded-md text-xs font-medium"
