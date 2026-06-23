@@ -3,11 +3,13 @@ import { ArrowLeft, ShieldAlert } from "lucide-react";
 import StepList from "@/components/StepList";
 import WarningBox from "@/components/WarningBox";
 import DoctorTip from "@/components/DoctorTip";
-import injuries from "@/data/injuries.json";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { useLanguageStore } from "@/stores/languageStore";
 
 export default function InjuryDetailPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { t, injuries } = useLanguageStore();
   const injury = injuries.find((item) => item.id === id);
 
   if (!injury) {
@@ -15,13 +17,13 @@ export default function InjuryDetailPage() {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-amber-50 to-white">
         <div className="text-center px-4">
           <p className="text-6xl mb-4">😵</p>
-          <h2 className="text-xl font-bold text-stone-700 mb-2">未找到该伤情信息</h2>
-          <p className="text-stone-500 mb-6">请检查链接或返回首页重新选择</p>
+          <h2 className="text-xl font-bold text-stone-700 mb-2">{t.notFound}</h2>
+          <p className="text-stone-500 mb-6">{t.notFoundDesc}</p>
           <button
             onClick={() => navigate("/")}
             className="px-6 py-2.5 bg-red-600 text-white rounded-full font-medium hover:bg-red-700 transition-colors"
           >
-            返回首页
+            {t.returnHome}
           </button>
         </div>
       </div>
@@ -43,6 +45,7 @@ export default function InjuryDetailPage() {
             <span className="text-2xl flex-shrink-0">{injury.icon}</span>
             <h1 className="font-bold text-stone-800 text-lg truncate">{injury.title}</h1>
           </div>
+          <LanguageSwitcher />
         </div>
       </header>
 
@@ -54,7 +57,7 @@ export default function InjuryDetailPage() {
             <div className="w-9 h-9 rounded-xl bg-teal-50 flex items-center justify-center">
               <span className="text-lg">✅</span>
             </div>
-            <h2 className="font-bold text-teal-800 text-lg">处理步骤</h2>
+            <h2 className="font-bold text-teal-800 text-lg">{t.steps}</h2>
           </div>
           <StepList steps={injury.steps} />
         </section>
@@ -71,7 +74,7 @@ export default function InjuryDetailPage() {
           className="flex items-center justify-center gap-2 py-4 text-sm text-stone-400 hover:text-red-500 transition-colors"
         >
           <ShieldAlert className="w-4 h-4" />
-          <span>查看完整免责声明</span>
+          <span>{t.viewFullDisclaimer}</span>
         </Link>
       </main>
     </div>

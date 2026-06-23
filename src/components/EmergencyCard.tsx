@@ -1,8 +1,10 @@
 import { AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useLanguageStore } from "@/stores/languageStore";
 
 export default function EmergencyCard() {
   const navigate = useNavigate();
+  const { t } = useLanguageStore();
 
   return (
     <div
@@ -18,10 +20,8 @@ export default function EmergencyCard() {
           <AlertTriangle className="w-7 h-7 text-white" />
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-white font-bold text-lg tracking-tight">紧急情况速查</h3>
-          <p className="text-red-100 text-sm mt-0.5 opacity-90">
-            严重出血 · 心脏骤停 · 气道梗阻
-          </p>
+          <h3 className="text-white font-bold text-lg tracking-tight">{t.emergency}</h3>
+          <p className="text-red-100 text-sm mt-0.5 opacity-90">{t.emergencySubtitle}</p>
         </div>
         <svg
           className="w-5 h-5 text-red-200 group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0"

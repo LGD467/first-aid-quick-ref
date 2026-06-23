@@ -1,9 +1,11 @@
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import emergencyData from "@/data/emergency.json";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { useLanguageStore } from "@/stores/languageStore";
 
 export default function EmergencyPage() {
   const navigate = useNavigate();
+  const { t, emergency } = useLanguageStore();
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-red-950 via-red-900 to-stone-950">
@@ -16,23 +18,22 @@ export default function EmergencyPage() {
           >
             <ArrowLeft className="w-4.5 h-4.5 text-red-200" />
           </button>
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2.5 flex-1">
             <span className="text-2xl">🚨</span>
-            <h1 className="font-bold text-red-100 text-lg">极危情况速查</h1>
+            <h1 className="font-bold text-red-100 text-lg">{t.emergencyPageTitle}</h1>
           </div>
+          <LanguageSwitcher />
         </div>
       </header>
 
       {/* 警示横幅 */}
       <div className="bg-gradient-to-r from-yellow-500 to-orange-500 py-3 px-4 text-center">
-        <p className="text-white font-bold text-sm tracking-wide">
-          ⚠️ 以下为危及生命的情况，请在施救的同时立即拨打 120
-        </p>
+        <p className="text-white font-bold text-sm tracking-wide">{t.emergencyWarning}</p>
       </div>
 
       {/* 紧急场景列表 */}
       <main className="max-w-3xl mx-auto px-4 py-6 space-y-5">
-        {emergencyData.map((item) => (
+        {emergency.map((item) => (
           <article
             key={item.id}
             className={`rounded-2xl p-5 md:p-6 ${
@@ -75,9 +76,7 @@ export default function EmergencyPage() {
 
       {/* 底部提醒 */}
       <footer className="py-8 px-4 text-center">
-        <p className="text-red-300/50 text-xs">
-          本页面内容仅供急救参考 · 紧急情况请第一时间呼叫专业救援
-        </p>
+        <p className="text-red-300/50 text-xs">{t.emergencyFooter}</p>
       </footer>
     </div>
   );

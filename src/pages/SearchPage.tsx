@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useSearchParams, Link, useNavigate } from "react-router-dom";
 import { Search as SearchIcon, ArrowLeft } from "lucide-react";
 import { useSearch } from "@/hooks/useSearch";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { useLanguageStore } from "@/stores/languageStore";
 
 export default function SearchPage() {
   const [searchParams] = useSearchParams();
@@ -9,6 +11,7 @@ export default function SearchPage() {
   const results = useSearch(query);
   const [inputValue, setInputValue] = useState(query);
   const navigate = useNavigate();
+  const { t } = useLanguageStore();
 
   // 同步URL参数到输入框
   useEffect(() => {
@@ -19,6 +22,21 @@ export default function SearchPage() {
     e.preventDefault();
     if (inputValue.trim()) {
       navigate(`/search?q=${encodeURIComponent(inputValue.trim())}`);
+    }
+  };
+
+  const matchKeyLabel = (key: string) => {
+    switch (key) {
+      case "title":
+        return t.matchTitle;
+      case "keywords":
+        return t.matchKeywords;
+      case "description":
+        return t.matchDescription;
+      case "steps":
+        return t.matchSteps;
+      default:
+        return key;
     }
   };
 
@@ -38,19 +56,20 @@ export default function SearchPage() {
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              placeholder="搜索伤情或症状..."
+              placeholder={t.searchPlaceholder}
               autoFocus
               className="w-full px-4 py-2.5 pr-10 rounded-xl border border-stone-200 bg-stone-50 focus:outline-none focus:border-red-500 focus:bg-white focus:ring-2 focus:ring-red-500/10 transition-all text-base placeholder:text-stone-400"
             />
             <SearchIcon className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-stone-400" />
           </form>
+          <LanguageSwitcher />
         </div>
       </header>
 
       {/* 搜索结果 */}
       <main className="max-w-3xl mx-auto px-4 py-6">
         {query.length > 0 && query.length < 2 && (
-          <p className="text-center text-stone-400 py-12 text-sm">请输入至少2个字符进行搜索</p>
+          <p className="text-center text-stone-400 py-12 text-sm">{t.minSearchLength}</p>
         )}
 
         {query.length >= 2 && (
@@ -58,7 +77,9 @@ export default function SearchPage() {
             {results.length > 0 ? (
               <div className="space-y-3">
                 <p className="text-sm text-stone-400 mb-4">
-                  找到 <span className="font-bold text-stone-600">{results.length}</span> 条相关结果
+                  {t.resultCount}{" "}
+                  <span className="font-bold text-stone-600">{results.length}</span>{" "}
+                  {t.searchResults}
                 </p>
                 {results.map((result) => (
                   <Link
@@ -81,7 +102,7 @@ export default function SearchPage() {
                                 key={idx}
                                 className="px-2 py-0.5 bg-yellow-100 text-yellow-800 rounded-md text-xs font-medium"
                               >
-                                匹配: {match.key === "title" ? "标题" : match.key === "keywords" ? "关键词" : match.key === "description" ? "描述" : "步骤"}
+                                {t.search}: {matchKeyLabel(match.key)}
                               </span>
                             ))}
                           </div>
@@ -103,10 +124,8 @@ export default function SearchPage() {
             ) : (
               <div className="text-center py-16">
                 <p className="text-5xl mb-4">🔍</p>
-                <h3 className="text-lg font-bold text-stone-600 mb-2">未找到相关结果</h3>
-                <p className="text-stone-400 text-sm">
-                  试试其他关键词，如「烫伤」「出血」「狗咬」等
-                </p>
+                <h3 className="text-lg font-bold text-stone-600 mb-2">{t.noResults}</h3>
+                <p className="text-stone-400 text-sm">{t.noResultsHint}</p>
               </div>
             )}
           </>
@@ -115,7 +134,7 @@ export default function SearchPage() {
         {!query && (
           <div className="text-center py-16 text-stone-400">
             <SearchIcon className="w-12 h-12 mx-auto mb-4 opacity-30" />
-            <p>输入关键词搜索伤情或症状</p>
+            <p>{t.searchPlaceholder}</p>
           </div>
         )}
       </main>

@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import Fuse from "fuse.js";
 import type { InjuryData } from "@/types/injury";
-import injuries from "@/data/injuries.json";
+import { useLanguageStore } from "@/stores/languageStore";
 
 interface SearchResult {
   item: InjuryData;
@@ -9,6 +9,8 @@ interface SearchResult {
 }
 
 export function useSearch(query: string): SearchResult[] {
+  const { injuries } = useLanguageStore();
+
   return useMemo(() => {
     if (!query || query.trim().length < 2) return [];
 
@@ -26,5 +28,5 @@ export function useSearch(query: string): SearchResult[] {
     });
 
     return fuse.search(query.trim()) as unknown as SearchResult[];
-  }, [query]);
+  }, [query, injuries]);
 }
