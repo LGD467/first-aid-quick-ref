@@ -48,17 +48,26 @@ export default function HomePage() {
       </main>
 
       {/* 底部免责入口 */}
-      <footer className="border-t border-stone-100 py-6 px-4 text-center">
+      <footer className="border-t border-stone-100 py-6 px-4 text-center space-y-3">
         <p className="text-xs text-stone-400 leading-relaxed max-w-md mx-auto">
           {t.footerDisclaimer}
           <span className="font-bold text-red-500">120</span>
         </p>
-        <a
-          href="/about"
-          className="inline-block mt-2 text-xs text-stone-400 hover:text-red-500 transition-colors duration-200"
-        >
-          {t.footerDisclaimerLink}
-        </a>
+        <div className="flex items-center justify-center gap-4 text-xs">
+          <a
+            href="/about"
+            className="text-stone-400 hover:text-red-500 transition-colors duration-200"
+          >
+            {t.footerDisclaimerLink}
+          </a>
+          <span className="text-stone-300">|</span>
+          <a
+            href="/feedback"
+            className="text-stone-400 hover:text-blue-500 transition-colors duration-200"
+          >
+            {t.feedbackTitle} →
+          </a>
+        </div>
       </footer>
     </div>
   );

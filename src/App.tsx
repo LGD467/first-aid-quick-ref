@@ -4,6 +4,7 @@ import InjuryDetailPage from "@/pages/InjuryDetailPage";
 import SearchPage from "@/pages/SearchPage";
 import EmergencyPage from "@/pages/EmergencyPage";
 import AboutPage from "@/pages/AboutPage";
+import FeedbackPage from "@/pages/FeedbackPage";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/injury/:id" element={<InjuryDetailPage />} />
         <Route path="/emergency" element={<EmergencyPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/feedback" element={<FeedbackPage />} />
       </Routes>
     </HashRouter>
   );

@@ -93,12 +93,18 @@ export default function AboutPage() {
         </section>
 
         {/* 技术信息 */}
-        <section className="text-center py-6">
+        <section className="text-center py-6 space-y-3">
           <div className="flex items-center justify-center gap-2 text-stone-400 text-sm">
             <Github className="w-4 h-4" />
             <span>{t.techInfo}</span>
           </div>
           <p className="text-stone-300 text-xs mt-2">Made with care for safety</p>
+          <a
+            href="/feedback"
+            className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-500 transition-colors"
+          >
+            {t.feedbackTitle} →
+          </a>
         </section>
       </main>
     </div>

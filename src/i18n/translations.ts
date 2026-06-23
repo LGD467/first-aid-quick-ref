@@ -63,6 +63,27 @@ export interface Translations {
   // 底部
   footerDisclaimer: string;
   footerDisclaimerLink: string;
+
+  // 反馈页
+  feedbackTitle: string;
+  feedbackSubtitle: string;
+  feedbackDesc: string;
+  feedbackSelectType: string;
+  feedbackType: string;
+  feedbackTypeSuggestion: string;
+  feedbackTypeSuggestionDesc: string;
+  feedbackTypeBug: string;
+  feedbackTypeBugDesc: string;
+  feedbackTypeGeneral: string;
+  feedbackTypeGeneralDesc: string;
+  feedbackSubject: string;
+  feedbackSubjectPlaceholder: string;
+  feedbackContent: string;
+  feedbackContentPlaceholder: string;
+  feedbackSubmit: string;
+  feedbackDirectContact: string;
+  feedbackResponseTime: string;
+  feedbackSentFrom: string;
 }
 
 export const zh: Translations = {
@@ -124,6 +145,28 @@ export const zh: Translations = {
   footerDisclaimer:
     "本工具仅供参考，不能替代专业医疗建议。紧急情况请立即拨打 ",
   footerDisclaimerLink: "了解更多与免责声明 →",
+
+  // 反馈页
+  feedbackTitle: "意见反馈",
+  feedbackSubtitle: "我们期待你的声音",
+  feedbackDesc:
+    "你想了解哪些外伤急救知识？或者在使用中遇到了什么问题？欢迎随时告诉我们，我们会认真考虑每一条反馈。",
+  feedbackSelectType: "选择反馈类型",
+  feedbackType: "类型",
+  feedbackTypeSuggestion: "内容建议",
+  feedbackTypeSuggestionDesc: "希望增加的伤情类型或急救知识",
+  feedbackTypeBug: "问题报告",
+  feedbackTypeBugDesc: "使用中发现的问题或错误信息",
+  feedbackTypeGeneral: "其他反馈",
+  feedbackTypeGeneralDesc: "使用体验、功能建议或其他想法",
+  feedbackSubject: "主题（可选）",
+  feedbackSubjectPlaceholder: "简要描述你的反馈主题...",
+  feedbackContent: "详细内容",
+  feedbackContentPlaceholder: "请详细描述你的建议或遇到的问题...",
+  feedbackSubmit: "发送反馈邮件",
+  feedbackDirectContact: "也可以直接通过邮箱联系我们：",
+  feedbackResponseTime: "通常会在 1-3 个工作日内回复",
+  feedbackSentFrom: "此邮件来自「外伤急救速查」用户反馈",
 };
 
 export const en: Translations = {
@@ -190,6 +233,28 @@ export const en: Translations = {
   footerDisclaimer:
     "For reference only — does not replace professional medical advice. In emergencies, call ",
   footerDisclaimerLink: "Learn more & Disclaimer →",
+
+  // 反馈页
+  feedbackTitle: "Feedback",
+  feedbackSubtitle: "We'd love to hear from you",
+  feedbackDesc:
+    "What first aid topics would you like to see added? Or did you encounter any issues while using this app? We welcome all feedback and take every suggestion seriously.",
+  feedbackSelectType: "Select Feedback Type",
+  feedbackType: "Type",
+  feedbackTypeSuggestion: "Content Suggestion",
+  feedbackTypeSuggestionDesc: "New injury types or first aid topics to add",
+  feedbackTypeBug: "Bug Report",
+  feedbackTypeBugDesc: "Issues or errors found while using the app",
+  feedbackTypeGeneral: "Other Feedback",
+  feedbackTypeGeneralDesc: "User experience, feature requests, or other thoughts",
+  feedbackSubject: "Subject (optional)",
+  feedbackSubjectPlaceholder: "Briefly describe your feedback topic...",
+  feedbackContent: "Details",
+  feedbackContentPlaceholder: "Please describe your suggestion or issue in detail...",
+  feedbackSubmit: "Send Feedback Email",
+  feedbackDirectContact: "Or contact us directly via email:",
+  feedbackResponseTime: "Usually responds within 1-3 business days",
+  feedbackSentFrom: "Sent from First Aid Quick Ref User Feedback",
 };
 
 export const translations: Record<Locale, Translations> = { zh, en };
