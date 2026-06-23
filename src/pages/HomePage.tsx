@@ -3,6 +3,7 @@ import EmergencyCard from "@/components/EmergencyCard";
 import CategoryGrid from "@/components/CategoryGrid";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLanguageStore } from "@/stores/languageStore";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   const { t, injuries } = useLanguageStore();
@@ -54,19 +55,19 @@ export default function HomePage() {
           <span className="font-bold text-red-500">120</span>
         </p>
         <div className="flex items-center justify-center gap-4 text-xs">
-          <a
-            href="/about"
+          <Link
+            to="/about"
             className="text-stone-400 hover:text-red-500 transition-colors duration-200"
           >
             {t.footerDisclaimerLink}
-          </a>
+          </Link>
           <span className="text-stone-300">|</span>
-          <a
-            href="/feedback"
+          <Link
+            to="/feedback"
             className="text-stone-400 hover:text-blue-500 transition-colors duration-200"
           >
             {t.feedbackTitle} →
-          </a>
+          </Link>
         </div>
       </footer>
     </div>

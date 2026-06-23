@@ -2,6 +2,7 @@ import { ArrowLeft, FileText, Github, Heart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLanguageStore } from "@/stores/languageStore";
+import { Link } from "react-router-dom";
 
 export default function AboutPage() {
   const navigate = useNavigate();
@@ -99,12 +100,12 @@ export default function AboutPage() {
             <span>{t.techInfo}</span>
           </div>
           <p className="text-stone-300 text-xs mt-2">Made with care for safety</p>
-          <a
-            href="/feedback"
+          <Link
+            to="/feedback"
             className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-500 transition-colors"
           >
             {t.feedbackTitle} →
-          </a>
+          </Link>
         </section>
       </main>
     </div>
